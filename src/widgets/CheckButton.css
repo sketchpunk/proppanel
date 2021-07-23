@@ -1,0 +1,29 @@
+/* #region Check Button */
+check-button{ display:flex; flex-direction:row; overflow:hidden; }
+check-button input{ position:absolute !important; clip:rect(0,0,0,0); overflow:hidden; height:1px; height:1px; border:0px; }
+check-button label{ flex:1 1 auto; user-select: none; -ms-user-select: none; cursor: pointer; }
+
+check-button label{
+    text-align          : center ;
+    color               : #404040;
+    background-color    : var(--btn-alt-bg);
+    border-radius       : 4px;
+    padding             : 2px 0px;
+    transition          : all 0.2s ease-in-out;
+    max-height          : 24px;
+}
+
+check-button input:checked + label{ background-color:var(--btn-bg); color:black; }
+
+check-button.onoff label:after { content:"OFF"; }
+check-button.onoff input:checked + label:after { content:"ON"; }
+    
+check-button.yesno label:after { content:"NO"; }
+check-button.yesno input:checked + label:after { content:"YES"; }
+
+check-button.tf label:after { content:"FALSE"; }
+check-button.tf input:checked + label:after { content:"TRUE"; }
+
+check-button.check label:after { content:"\2716"; font-size:var(--font-size); }
+check-button.check input:checked + label:after { content:"\2714";  font-size:var(--font-size); }
+/* #endregion */

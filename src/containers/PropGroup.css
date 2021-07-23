@@ -1,0 +1,34 @@
+/* #region prop-group */
+.prop-group > header{ display:flex; align-items: center; }
+.prop-group > header > span{ flex:1 1 auto; user-select: none; }
+.prop-group > header > svg{ flex:0 0 auto; cursor:pointer; }
+.prop-group > main{ display:flex; flex-direction:column; overflow:hidden; max-height:1500px; transition: max-height 1.5s ease-in; }
+.prop-group.close > main { max-height:0px; transition-timing-function: cubic-bezier(.07,1.07,0,1.01);
+    transition: all 0.9s, opacity 0.2s;  }
+
+.prop-group > header > svg > path:nth-child( 1 ){ visibility:hidden; }
+.prop-group > header > svg > path:nth-child( 2 ){ visibility:visible; }
+
+.prop-group.close > header > svg > path:nth-child( 1 ){ visibility:visible; }
+.prop-group.close > header > svg > path:nth-child( 2 ){ visibility:hidden; }
+
+/*----- THEME -----*/
+.prop-group > header{ background-color:var(--head-bg); padding:2px 6px 2px 8px; border-radius:4px 4px 0px 0px; color:white; }
+.prop-group > main{ border:2px solid var(--head-bg); border-width:0px 4px 4px 4px; border-radius:0px 0px 4px 4px; padding:4px; opacity:1.0; }
+.prop-group.close > main{ border-width:0px; padding:0px; opacity:0.0 }
+.prop-group.close > header{ border-radius:4px; }
+
+.prop-group > main{ padding:4px 6px; }
+.prop-group > main ::slotted(*:not(:last-child)){ margin-bottom:4px; }
+
+input.chkCircle[type=checkbox]{ position: relative; }
+input.chkCircle[type=checkbox]:before{
+    content:""; position:absolute;
+    width:130%; height:130%; left:-15%; top:-15%;
+    border-radius: 50%; background-color: #555b64;
+    transition: all 0.25s ease-in-out;
+}
+
+.prop-group > header > svg { width:12px; height:12px; fill:#e0e0e0; }
+
+/* #endregion //////////////////////////////////////////////////////// */

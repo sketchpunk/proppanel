@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html><head>
+<script type="module">
+    import * as PP from "../dist/bundle.js";
+
+    window.addEventListener( "load", e=>{
+        PP.Dom.on( "btnTest", "click", false, e=>console.log( "Button - " + e.srcElement.id ) );
+        PP.Dom.on( "dniTest", "input", false, e=>console.log( "DragInput - " + e.detail.value ) );
+        PP.Dom.on( "rngTest", "input", false, e=>console.log( "RangeInput - %d %d", e.detail.min, e.detail.max ) );
+        PP.Dom.on( "siTest", "input", false, e=>console.log( "SlideInput - %d", e.detail.value ) );
+    });
+</script>
+</head><body style="background-color:#a0a0a0;">
+
+    <div style="width:300px; padding:10px;">
+        <prop-panel head="Header" foot="Footer">
+            <button>ccc</button>
+            <input type="text">
+            <select><option>a</option><option>b</option></select>
+            <prop-row label="PRow"> <flex-stack>
+                <check-button class="onoff"></check-button>
+                <check-button class="yesno" on="false"></check-button>
+                <check-button class="tf"></check-button>
+                <check-button class="check"></check-button>
+            </flex-stack> </prop-row>
+            <prop-row label="PRow"> <drag-number-input></drag-number-input> </prop-row>
+            <prop-row label="PRow"> <flex-stack row="3"> 
+                <drag-number-input></drag-number-input> 
+                <drag-number-input></drag-number-input> 
+                <drag-number-input></drag-number-input> 
+            </flex-stack> </prop-row>
+            <prop-group label="Group">
+                <prop-row label="PRow"><range-input></range-input></prop-row>
+                <slide-input></slide-input>
+            </prop-group>
+            <div style="height:100px; background: linear-gradient(180deg, #27292D 0%, #1c1d22 100%);"> x</div>
+            <div style="height:100px; background: linear-gradient(180deg, #27292D 0%, #1c1d22 100%);"> y</div>
+        </prop-panel>
+    </div>
+
+    <prop-panel-btncont open="true" panelWidth="300px">
+
+        <prop-panel head="HEADER" foot="FOOTER">
+            <button id="btnTest">Button Test</button>
+            <input type="text" value="Text Input" >
+            <select><option>Select Box</option><option>b</option></select>
+
+            <prop-row label="Check Boxes"> <flex-stack row="3">
+                <check-button class="onoff" on="false"></check-button>
+                <check-button class="yesno"></check-button>
+                <check-button class="tf" on="false"></check-button>
+                <check-button class="check"></check-button>
+            </flex-stack> </prop-row>
+
+            <prop-row label="Drag Input"> <flex-stack row="3"> 
+                <drag-number-input id="dniTest"></drag-number-input> 
+                <drag-number-input></drag-number-input> 
+                <drag-number-input></drag-number-input> 
+            </flex-stack> </prop-row>
+
+            <prop-group label="Group">
+                <prop-row label="RangeInput"><range-input id="rngTest"></range-input></prop-row>
+                <prop-row label="SlideInput"><slide-input id="siTest"></slide-input></prop-row>
+            </prop-group>
+        </prop-panel>
+
+    </prop-panel-btncont>
+
+</body></html>

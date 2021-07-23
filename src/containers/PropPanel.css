@@ -1,0 +1,18 @@
+/* #region prop-panel */
+.prop-panel > main{ display:flex; flex-direction:column; }
+
+/*:host{ border:3px solid sandybrown; }
+prop-panel:part(header){ border:1px solid black; }*/
+
+/*----- THEME -----*/
+.prop-panel{ background-color:var(--main-bg); border-radius:8px; }
+.prop-panel > header{ background-color:var(--head-bg); color:#d9d9d9; font-weight:bold; text-align:center; border-radius:8px 8px 0px 0px; padding: 3px 0px; }
+.prop-panel > footer{ background-color:var(--head-bg); color:#d9d9d9; font-weight:bold; text-align:center; border-radius:0px 0px 8px 8px; padding: 3px 0px; }
+
+/*.prop-panel > main{}
+.prop-panel > main ::slotted(*:not(:last-child)){ margin-bottom:8px; }*/
+
+.prop-panel > main ::slotted( * ){ margin:4px 4px 0px 4px; }
+.prop-panel > main ::slotted( *:last-child ){ margin:4px 4px 4px 4px; }
+
+/* #endregion //////////////////////////////////////////////////////// */

@@ -1,0 +1,20 @@
+/* #region prop-row */
+
+.prop-row{ display:flex; box-sizing:border-box; min-width:0px; }
+.prop-row > label{ display:flex; justify-content:left; align-items:center; }
+.prop-row > main{ display:flex; flex-direction:row; min-width:0px; }
+.prop-row > main ::slotted(*){ flex: 1 1 auto; }
+
+/* --- THEME --- */
+.prop-row > label{ color:#d9d9d9; }
+
+.prop-row.size2080 > label{ flex:0 0 20%; }
+.prop-row.size2080 > main{ flex:0 0 80%; }
+
+.prop-row.size3070 > label{ flex:0 0 30%; }
+.prop-row.size3070 > main{ flex:0 0 70%; }
+
+.prop-row.size4060 > label{ flex:0 0 40%; }
+.prop-row.size4060 > main{ flex:0 0 60%; }
+
+/* #endregion //////////////////////////////////////////////////////// */

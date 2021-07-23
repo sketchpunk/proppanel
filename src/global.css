@@ -1,0 +1,66 @@
+/* #region Global */
+:root{
+    --main-bg               : #16151A;
+    --head-bg               : #34373f;
+    --font-size             : 12px;
+    --text-col              : #414141;
+    --slot-margin           : 4px;
+    --btn-bg                : #ADAFB8;
+    --btn-alt-bg            : #62656d;
+
+    --tb-bg                 : #484f53;
+    --tb-focus-bg           : #5d6c77;
+}
+/* #endregion */
+
+/* #region INPUT STYLES */
+
+/*
+https://codepen.io/ShanKris/pen/EXYMxg awesome TrueFalse Toggle
+https://webdesign.tutsplus.com/tutorials/toggle-switch-component-with-css-checkbox-hack--cms-35011  EVEN BETTER TOGGLE
+
+https://lokesh-coder.github.io/pretty-checkbox/
+https://codepen.io/aaroniker/pen/abzgWEx Cool SVG PLUS MINUS ICON
+https://codepen.io/aaroniker/pen/ZEYoxEY
+
+https://codepen.io/LeonardMeagher2/pen/NvOLZr
+https://codepen.io/abergin/pen/kjwBz/
+*/
+
+prop-panel,
+prop-panel button,
+prop-panel select{
+    font-family : monospace;
+    font-size   : var(--font-size);
+    color       : var(--text-col);
+}
+
+/* SELECT */
+prop-panel select{ border:none; border-radius:3px; background-color:var(--btn-bg); padding:2px 0px 2px 6px; color: var(--secondary-txt); }
+prop-panel select:focus { outline:0; background-color:#aaabb1; }
+prop-panel select:hover { color:black; }
+
+/* TEXTBOX */
+prop-panel input[ type="text" ]{
+	border:none; background-color:var(--tb-bg); padding:2px 0px 2px 6px; color:gray;
+	border-radius:3px; font-size:var(--font-size);
+	transition: all .3s ease-out;
+}
+
+prop-panel input[ type=text ]:hover { color:#ffffff; }
+prop-panel input[ type=text ]:focus { outline:0; background-color:var(--tb-focus-bg); color:white; } 
+
+/* RANGE */
+prop-panel input[type=range] { margin:1px; box-sizing: border-box; -webkit-appearance: none; min-height:20px; border-radius:5px;}
+prop-panel input[type=range]:focus{ outline:0; background-color:#404040; border-color:#c0c0c0; color:white; }
+prop-panel input[type=range]::-webkit-slider-thumb{ -webkit-appearance: none; height:100%; width:40px; background: #727272; border-radius:4px; cursor: pointer; }
+prop-panel input[type=range]::-webkit-slider-runnable-track{ height: 100%; cursor: ew-resize; background: #303030; border:1px solid #555555; border-radius:5px; transition: all 0.3s ease-out; }
+prop-panel input[type=range]:focus::-webkit-slider-runnable-track{ background-color:#404040; border-color:#c0c0c0; }
+
+/* BUTTON */
+prop-panel button{ border:none; border-radius:3px; padding:2px 0px; background-color: var(--btn-bg); }
+prop-panel button:active{ background-color:#1dcfb8; }
+prop-panel button:focus{ outline:0; }
+prop-panel button:hover{ color:#ffffff }
+
+/* #endregion //////////////////////////////////////////////////////// */

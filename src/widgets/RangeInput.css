@@ -1,0 +1,8 @@
+
+range-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
+range-input svg{ flex:1 1 auto; }
+range-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_track{ stroke:gray; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_thumb { user-select: none; }
+range-input .rng_thumb rect{ fill:white; rx:3px; }
+range-input .rng_thumb text{ fill:black; font-size:13px; font-family: monospace; font-weight:bold; text-align:center; }

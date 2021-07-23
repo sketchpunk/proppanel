@@ -1,0 +1,50 @@
+/* #region prop-panel-btncont */
+prop-panel-btncont{ position:absolute; bottom:10px; right:10px; }
+
+.prop-panel-btncont{ width:50px; height:50px; position:relative; }
+
+.prop-panel-btncont > button{
+    position:absolute; width:50px; height:50px; bottom:0px; right:0px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1.0); /* Extra OuterRing Hidden */
+    border:none; border-radius:50%; padding:4px; margin:0px;
+    display:flex; flex-direction:column; align-items: stretch;
+    box-sizing:border-box; cursor:pointer;
+}
+
+.prop-panel-btncont > button > div{
+    border-radius:50%; flex: 1 1 auto; display:flex; justify-content: center; align-items: center;
+    /*transition: all 0.3s ease-in-out;*/
+}
+.prop-panel-btncont > button:focus{ outline:none; }
+
+.prop-panel-btncont > section{
+    position:absolute; width:00px; bottom:60%; right:60%;
+    opacity: 0; transform: scale( 0 );
+    transform-origin: bottom right;
+}
+.prop-panel-btncont > section.open{ opacity:1; transform:scale(1); }
+
+
+/* --- THEME --- */
+.prop-panel-btncont > button{ 
+    background-color: white; /* OuterRing Color */
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+.prop-panel-btncont > button > div{ background-color: #505050; /* InnerCircle Color */ }
+.prop-panel-btncont > button svg{ fill:white; transition: all 0.3s ease; }
+
+.prop-panel-btncont > section{
+    border-radius:8px;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+.prop-panel-btncont > button.open{ background-color: #00000000; box-shadow: 0px 0px 0px 4px #FFFFFFcc; } /* OuterRing hide, Extra OuterRing shows */
+.prop-panel-btncont > button.open div{ background-color:#d0d0d0; } /* InnerCircle */
+.prop-panel-btncont > button.open svg{ fill:#a0a0a0; }
+
+.prop-panel-btncont > button:hover svg{ fill:cyan; }
+
+/* #endregion //////////////////////////////////////////////////////// */

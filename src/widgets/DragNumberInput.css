@@ -1,0 +1,35 @@
+/* #region DragNumberInput */
+drag-number-input{ display:flex; flex-direction:row; min-width:0px; }
+drag-number-input div{ flex:0 0; display: flex; align-items: center; cursor:pointer; user-select: none; }
+drag-number-input svg{ width:10px; height:10px; overflow:visible; transform-box: fill-box; z-index:100; }
+drag-number-input svg * { transform:translate( 50%, 50% ); }
+drag-number-input input{ flex:1 1 auto; min-width:0px; }
+
+drag-number-input svg path{ visibility:hidden; }
+drag-number-input.show svg path{ visibility:visible; }
+
+/*----- THEME -----*/
+drag-number-input{ background-color:var(--tb-bg); transition: all .3s ease-out; border-radius:4px 10px 10px 4px; }
+drag-number-input:focus-within{ background-color:var(--tb-focus-bg); }
+drag-number-input:focus-within svg circle { fill:white; }
+
+drag-number-input div{ padding:0px 5px 0px 0px; }
+drag-number-input svg path:nth-of-type(1){ stroke: white; stroke-dasharray: 2px 2px; }
+drag-number-input svg path:nth-of-type(2){ stroke: white; stroke-width: 3px; }
+
+drag-number-input svg circle{ fill:gray; transition: all .3s ease-out; }
+drag-number-input svg circle:hover{ fill:white; }
+
+drag-number-input input{ padding: 2px 2px 2px 6px; border:none; background-color:transparent;
+	text-align:left; color:gray; font-size:var(--font-size); transition: all .3s ease-out; }
+
+drag-number-input input::-webkit-inner-spin-button, 
+drag-number-input input::-webkit-outer-spin-button{ display:none; }
+
+drag-number-input input:hover{ color:#ffffff; }
+drag-number-input input:focus { outline:0; color:white; } 
+
+drag-number-input.show input{ color:white; }
+drag-number-input.show svg circle{ fill:white; }
+
+/* #endregion */

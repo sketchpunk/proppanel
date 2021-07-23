@@ -1,0 +1,4 @@
+{
+    "port"      : 1338,
+    "server"    : { "baseDir": "./" }
+}

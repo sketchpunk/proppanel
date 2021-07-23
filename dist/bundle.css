@@ -1,0 +1,278 @@
+/* #region Global */
+:root{
+    --main-bg               : #16151A;
+    --head-bg               : #34373f;
+    --font-size             : 12px;
+    --text-col              : #414141;
+    --slot-margin           : 4px;
+    --btn-bg                : #ADAFB8;
+    --btn-alt-bg            : #62656d;
+
+    --tb-bg                 : #484f53;
+    --tb-focus-bg           : #5d6c77;
+}
+/* #endregion */
+
+/* #region INPUT STYLES */
+
+/*
+https://codepen.io/ShanKris/pen/EXYMxg awesome TrueFalse Toggle
+https://webdesign.tutsplus.com/tutorials/toggle-switch-component-with-css-checkbox-hack--cms-35011  EVEN BETTER TOGGLE
+
+https://lokesh-coder.github.io/pretty-checkbox/
+https://codepen.io/aaroniker/pen/abzgWEx Cool SVG PLUS MINUS ICON
+https://codepen.io/aaroniker/pen/ZEYoxEY
+
+https://codepen.io/LeonardMeagher2/pen/NvOLZr
+https://codepen.io/abergin/pen/kjwBz/
+*/
+
+prop-panel,
+prop-panel button,
+prop-panel select{
+    font-family : monospace;
+    font-size   : var(--font-size);
+    color       : var(--text-col);
+}
+
+/* SELECT */
+prop-panel select{ border:none; border-radius:3px; background-color:var(--btn-bg); padding:2px 0px 2px 6px; color: var(--secondary-txt); }
+prop-panel select:focus { outline:0; background-color:#aaabb1; }
+prop-panel select:hover { color:black; }
+
+/* TEXTBOX */
+prop-panel input[ type="text" ]{
+	border:none; background-color:var(--tb-bg); padding:2px 0px 2px 6px; color:gray;
+	border-radius:3px; font-size:var(--font-size);
+	transition: all .3s ease-out;
+}
+
+prop-panel input[ type=text ]:hover { color:#ffffff; }
+prop-panel input[ type=text ]:focus { outline:0; background-color:var(--tb-focus-bg); color:white; } 
+
+/* RANGE */
+prop-panel input[type=range] { margin:1px; box-sizing: border-box; -webkit-appearance: none; min-height:20px; border-radius:5px;}
+prop-panel input[type=range]:focus{ outline:0; background-color:#404040; border-color:#c0c0c0; color:white; }
+prop-panel input[type=range]::-webkit-slider-thumb{ -webkit-appearance: none; height:100%; width:40px; background: #727272; border-radius:4px; cursor: pointer; }
+prop-panel input[type=range]::-webkit-slider-runnable-track{ height: 100%; cursor: ew-resize; background: #303030; border:1px solid #555555; border-radius:5px; transition: all 0.3s ease-out; }
+prop-panel input[type=range]:focus::-webkit-slider-runnable-track{ background-color:#404040; border-color:#c0c0c0; }
+
+/* BUTTON */
+prop-panel button{ border:none; border-radius:3px; padding:2px 0px; background-color: var(--btn-bg); }
+prop-panel button:active{ background-color:#1dcfb8; }
+prop-panel button:focus{ outline:0; }
+prop-panel button:hover{ color:#ffffff }
+
+/* #endregion //////////////////////////////////////////////////////// */
+/* #region prop-panel */
+.prop-panel > main{ display:flex; flex-direction:column; }
+
+/*:host{ border:3px solid sandybrown; }
+prop-panel:part(header){ border:1px solid black; }*/
+
+/*----- THEME -----*/
+.prop-panel{ background-color:var(--main-bg); border-radius:8px; }
+.prop-panel > header{ background-color:var(--head-bg); color:#d9d9d9; font-weight:bold; text-align:center; border-radius:8px 8px 0px 0px; padding: 3px 0px; }
+.prop-panel > footer{ background-color:var(--head-bg); color:#d9d9d9; font-weight:bold; text-align:center; border-radius:0px 0px 8px 8px; padding: 3px 0px; }
+
+/*.prop-panel > main{}
+.prop-panel > main ::slotted(*:not(:last-child)){ margin-bottom:8px; }*/
+
+.prop-panel > main ::slotted( * ){ margin:4px 4px 0px 4px; }
+.prop-panel > main ::slotted( *:last-child ){ margin:4px 4px 4px 4px; }
+
+/* #endregion //////////////////////////////////////////////////////// */
+/* #region prop-panel-btncont */
+prop-panel-btncont{ position:absolute; bottom:10px; right:10px; }
+
+.prop-panel-btncont{ width:50px; height:50px; position:relative; }
+
+.prop-panel-btncont > button{
+    position:absolute; width:50px; height:50px; bottom:0px; right:0px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1.0); /* Extra OuterRing Hidden */
+    border:none; border-radius:50%; padding:4px; margin:0px;
+    display:flex; flex-direction:column; align-items: stretch;
+    box-sizing:border-box; cursor:pointer;
+}
+
+.prop-panel-btncont > button > div{
+    border-radius:50%; flex: 1 1 auto; display:flex; justify-content: center; align-items: center;
+    /*transition: all 0.3s ease-in-out;*/
+}
+.prop-panel-btncont > button:focus{ outline:none; }
+
+.prop-panel-btncont > section{
+    position:absolute; width:00px; bottom:60%; right:60%;
+    opacity: 0; transform: scale( 0 );
+    transform-origin: bottom right;
+}
+.prop-panel-btncont > section.open{ opacity:1; transform:scale(1); }
+
+
+/* --- THEME --- */
+.prop-panel-btncont > button{ 
+    background-color: white; /* OuterRing Color */
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+.prop-panel-btncont > button > div{ background-color: #505050; /* InnerCircle Color */ }
+.prop-panel-btncont > button svg{ fill:white; transition: all 0.3s ease; }
+
+.prop-panel-btncont > section{
+    border-radius:8px;
+    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+.prop-panel-btncont > button.open{ background-color: #00000000; box-shadow: 0px 0px 0px 4px #FFFFFFcc; } /* OuterRing hide, Extra OuterRing shows */
+.prop-panel-btncont > button.open div{ background-color:#d0d0d0; } /* InnerCircle */
+.prop-panel-btncont > button.open svg{ fill:#a0a0a0; }
+
+.prop-panel-btncont > button:hover svg{ fill:cyan; }
+
+/* #endregion //////////////////////////////////////////////////////// */
+/* #region Check Button */
+check-button{ display:flex; flex-direction:row; overflow:hidden; }
+check-button input{ position:absolute !important; clip:rect(0,0,0,0); overflow:hidden; height:1px; height:1px; border:0px; }
+check-button label{ flex:1 1 auto; user-select: none; -ms-user-select: none; cursor: pointer; }
+
+check-button label{
+    text-align          : center ;
+    color               : #404040;
+    background-color    : var(--btn-alt-bg);
+    border-radius       : 4px;
+    padding             : 2px 0px;
+    transition          : all 0.2s ease-in-out;
+    max-height          : 24px;
+}
+
+check-button input:checked + label{ background-color:var(--btn-bg); color:black; }
+
+check-button.onoff label:after { content:"OFF"; }
+check-button.onoff input:checked + label:after { content:"ON"; }
+    
+check-button.yesno label:after { content:"NO"; }
+check-button.yesno input:checked + label:after { content:"YES"; }
+
+check-button.tf label:after { content:"FALSE"; }
+check-button.tf input:checked + label:after { content:"TRUE"; }
+
+check-button.check label:after { content:"\2716"; font-size:var(--font-size); }
+check-button.check input:checked + label:after { content:"\2714";  font-size:var(--font-size); }
+/* #endregion */
+/* #region prop-row */
+
+.prop-row{ display:flex; box-sizing:border-box; min-width:0px; }
+.prop-row > label{ display:flex; justify-content:left; align-items:center; }
+.prop-row > main{ display:flex; flex-direction:row; min-width:0px; }
+.prop-row > main ::slotted(*){ flex: 1 1 auto; }
+
+/* --- THEME --- */
+.prop-row > label{ color:#d9d9d9; }
+
+.prop-row.size2080 > label{ flex:0 0 20%; }
+.prop-row.size2080 > main{ flex:0 0 80%; }
+
+.prop-row.size3070 > label{ flex:0 0 30%; }
+.prop-row.size3070 > main{ flex:0 0 70%; }
+
+.prop-row.size4060 > label{ flex:0 0 40%; }
+.prop-row.size4060 > main{ flex:0 0 60%; }
+
+/* #endregion //////////////////////////////////////////////////////// */
+/* #region FlexStack */
+flex-stack{ display:flex; flex-direction:row; flex-flow:row wrap; }
+flex-stack > * { margin: 2px 2px 2px 2px; }
+flex-stack.row6 > * { flex:1 1 13%; }
+flex-stack.row5 > * { flex:1 1 18%; }
+flex-stack.row4 > * { flex:1 1 23%; }
+flex-stack.row3 > * { flex:1 1 30%; }
+flex-stack.row2 > * { flex:1 1 45%; }
+flex-stack.row1 > * { flex:1 1 51%; }
+/* #endregion */
+
+/* #region DragNumberInput */
+drag-number-input{ display:flex; flex-direction:row; min-width:0px; }
+drag-number-input div{ flex:0 0; display: flex; align-items: center; cursor:pointer; user-select: none; }
+drag-number-input svg{ width:10px; height:10px; overflow:visible; transform-box: fill-box; z-index:100; }
+drag-number-input svg * { transform:translate( 50%, 50% ); }
+drag-number-input input{ flex:1 1 auto; min-width:0px; }
+
+drag-number-input svg path{ visibility:hidden; }
+drag-number-input.show svg path{ visibility:visible; }
+
+/*----- THEME -----*/
+drag-number-input{ background-color:var(--tb-bg); transition: all .3s ease-out; border-radius:4px 10px 10px 4px; }
+drag-number-input:focus-within{ background-color:var(--tb-focus-bg); }
+drag-number-input:focus-within svg circle { fill:white; }
+
+drag-number-input div{ padding:0px 5px 0px 0px; }
+drag-number-input svg path:nth-of-type(1){ stroke: white; stroke-dasharray: 2px 2px; }
+drag-number-input svg path:nth-of-type(2){ stroke: white; stroke-width: 3px; }
+
+drag-number-input svg circle{ fill:gray; transition: all .3s ease-out; }
+drag-number-input svg circle:hover{ fill:white; }
+
+drag-number-input input{ padding: 2px 2px 2px 6px; border:none; background-color:transparent;
+	text-align:left; color:gray; font-size:var(--font-size); transition: all .3s ease-out; }
+
+drag-number-input input::-webkit-inner-spin-button, 
+drag-number-input input::-webkit-outer-spin-button{ display:none; }
+
+drag-number-input input:hover{ color:#ffffff; }
+drag-number-input input:focus { outline:0; color:white; } 
+
+drag-number-input.show input{ color:white; }
+drag-number-input.show svg circle{ fill:white; }
+
+/* #endregion */
+
+range-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
+range-input svg{ flex:1 1 auto; }
+range-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_track{ stroke:gray; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_thumb { user-select: none; }
+range-input .rng_thumb rect{ fill:white; rx:3px; }
+range-input .rng_thumb text{ fill:black; font-size:13px; font-family: monospace; font-weight:bold; text-align:center; }
+slide-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
+slide-input svg{ flex:1 1 auto; }
+slide-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }
+slide-input .rng_track{ stroke:gray; stroke-width:6px; stroke-linecap:round; }
+slide-input .rng_thumb { user-select: none; }
+slide-input .rng_thumb rect{ fill:white; rx:3px; }
+slide-input .rng_thumb text{ fill:black; font-size:13px; font-family: monospace; font-weight:bold; text-align:center; }
+/* #region prop-group */
+.prop-group > header{ display:flex; align-items: center; }
+.prop-group > header > span{ flex:1 1 auto; user-select: none; }
+.prop-group > header > svg{ flex:0 0 auto; cursor:pointer; }
+.prop-group > main{ display:flex; flex-direction:column; overflow:hidden; max-height:1500px; transition: max-height 1.5s ease-in; }
+.prop-group.close > main { max-height:0px; transition-timing-function: cubic-bezier(.07,1.07,0,1.01);
+    transition: all 0.9s, opacity 0.2s;  }
+
+.prop-group > header > svg > path:nth-child( 1 ){ visibility:hidden; }
+.prop-group > header > svg > path:nth-child( 2 ){ visibility:visible; }
+
+.prop-group.close > header > svg > path:nth-child( 1 ){ visibility:visible; }
+.prop-group.close > header > svg > path:nth-child( 2 ){ visibility:hidden; }
+
+/*----- THEME -----*/
+.prop-group > header{ background-color:var(--head-bg); padding:2px 6px 2px 8px; border-radius:4px 4px 0px 0px; color:white; }
+.prop-group > main{ border:2px solid var(--head-bg); border-width:0px 4px 4px 4px; border-radius:0px 0px 4px 4px; padding:4px; opacity:1.0; }
+.prop-group.close > main{ border-width:0px; padding:0px; opacity:0.0 }
+.prop-group.close > header{ border-radius:4px; }
+
+.prop-group > main{ padding:4px 6px; }
+.prop-group > main ::slotted(*:not(:last-child)){ margin-bottom:4px; }
+
+input.chkCircle[type=checkbox]{ position: relative; }
+input.chkCircle[type=checkbox]:before{
+    content:""; position:absolute;
+    width:130%; height:130%; left:-15%; top:-15%;
+    border-radius: 50%; background-color: #555b64;
+    transition: all 0.25s ease-in-out;
+}
+
+.prop-group > header > svg { width:12px; height:12px; fill:#e0e0e0; }
+
+/* #endregion //////////////////////////////////////////////////////// */
