@@ -1,9 +1,10 @@
 # PropPanel
 
 <p>
-<img align="left" width="200" height="200" src="img/panel.png" style="border:2px solid black; margin-right:5px;">
+<img align="right" src="img/panel.png" style="border:2px solid black; margin-right:5px;">
 This is my Property Panel mini library that I use to create UI's for my prototypes. Its primarily a collection of web component widgets that I've built that can be pieced
 together to create UI. You use it like regular HTML Input Elements, so you can manage the events and data your own way.
+<br><br><br><br><br><br><br><br><br><br><br>
 </p>
 
 ### Get Started
