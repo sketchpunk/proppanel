@@ -25,6 +25,19 @@ class Dom{
         sElm.add( opt, optBefore );
     }
 
+    static rmOptionByValue( elm, v ){
+        elm = isElm( elm );
+        const opt = elm.options;
+
+        for( let i=0; i < opt.length; i++ ){
+            if( opt[ i ].value == v ){
+                elm.remove( i );
+                return true;
+            }
+        }
+        return false;
+    }
+
     static setSelectIndex( elm, idx ){
         elm = isElm( elm );
 

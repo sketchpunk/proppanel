@@ -1,38 +1,27 @@
 {
-	"name": "proppanel",
-	"version": "0.0.0.1",
-	"description": "Collection of UI WebComponent Widgets",
-	"keywords": [
-		"webcomponent",
-		"ui",
-		"widget"
-	],
-	"repository": {
-		"url": "https://github.com/sketchpunk/proppanel.git",
-		"type": "git"
-	},
-	"author": {
-		"name": "Sketchpunk",
-		"email": "tmp@tmp.com",
-		"url": "http://tmp"
-	},
-	"license": "MIT",
-	"main": "dist/bundle.js",
-	"module": "bundle.js",
-	"files": [
-		"dist"
-	],
-	"devDependencies": {
-		"concurrently": "^6.2.0",
-		"lite-server": "^2.6.1",
-		"rollup": "^2.53.3",
-		"rollup-plugin-css-only": "^3.1.0"
+	"name"			: "proppanel",
+	"version"		: "0.0.0.1",
+	"description"	: "Collection of UI WebComponent Widgets",
+	"keywords"		: [ "webcomponent", "ui", "widget" ],
+	"repository"	: { "url": "https://github.com/sketchpunk/proppanel.git", "type": "git" },
+	"author"		: { "name": "Sketchpunk", "email": "tmp@tmp.com", "url": "http://tmp" },
+	"license"		: "MIT",
+	"main"			: "dist/bundle.js",
+	"module"		: "bundle.js",
+	"files"			: [ "dist" ],
+
+	"devDependencies" : {
+		"concurrently"				: "^6.2.0",
+		"browser-sync"  			: "^2.27.5",
+		"rollup"					: "^2.53.3",
+		"rollup-plugin-css-only"	: "^3.1.0"
 	},
 	"scripts": {
-		"watch": "rollup -c --watch",
-		"build": "rollup -c",
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"lite": "lite-server",
-		"start": "concurrently \"npm:lite\" \"npm:watch\" "
+		"watch"		: "rollup -c --watch",
+		"build"		: "rollup -c",
+		"test"		: "echo \"Error: no test specified\" && exit 1",
+        "bsyncInit" : "browser-sync init",
+        "bsyncRun"  : "browser-sync start --config bs-config.js",
+		"start"		: "concurrently \"npm:bsyncRun\" \"npm:watch\" "
 	}
 }

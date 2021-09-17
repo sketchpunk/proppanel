@@ -32,6 +32,10 @@ import "./widgets/RangeInput.css";
 import SlideInput  from "./widgets/SlideInput.js";
 import "./widgets/SlideInput.css";
 
+
+import ButtonStrip from "./misc/ButtonStrip.js";
+import "./misc/ButtonStrip.css";
+
 (function(){
 	let link    = document.createElement( "link" );
 	link.rel	= "stylesheet";

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script type="module">
+    import * as PP from "../dist/bundle.js";
+
+    window.addEventListener( "load", e=>{
+
+    });
+</script>
+<style>
+    button-strip{ box-shadow: 2px 0px 4px #00000050; }
+    .opt-panel{
+        position:fixed;
+        display:flex; flex-direction:column;
+        width:150px;
+        background-color:#252526;
+        left:50px; top:0px; bottom:0px;
+        overflow-y:auto;
+
+        box-shadow: 3px 0px 4px #00000050;
+    }
+
+    .opt-panel::-webkit-scrollbar { width: 10px; padding:4px; }
+
+    .opt-panel::-webkit-scrollbar-track { background: transparent; }
+
+    .opt-panel::-webkit-scrollbar-thumb {
+        border: 2px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: 11px;
+        background-color: #606060;
+    }
+
+    .opt-panel > div{ flex: 0 0 auto; border:1px solid gray; height:100px; margin:8px 8px 0px 8px; }
+    .opt-panel > div:last-of-type{ margin-bottom:8px; }
+
+
+    body {
+    background-color    : #1E1E1E;
+    background-image    :
+        linear-gradient(rgba(255,255,255,.04) 2px,          transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 2px,   transparent 2px),
+        linear-gradient(rgba(255,255,255,.03) 1px,          transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px,   transparent 1px);
+    background-size     : 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position : -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+}
+
+    .footer-panel{
+        position:fixed;
+        display:flex; flex-direction:row;
+        font-family: monospace; font-size:12px; color:white;
+        height:22px;
+        background-color:#007ACC;
+        left:0px; right:0px; bottom:0px;
+        overflow-y:auto;
+        z-index:200;
+        box-shadow: 3px 0px 4px #00000050;
+    }
+
+    .footer-panel > header{ flex:1 1 auto; padding:0px 0px 0px 5px; display:flex; flex-direction:row; align-items:center; }
+    .footer-panel > footer{ flex:1 1 auto; padding:0px 5px 0px 0px; display:flex; flex-direction:row; align-items:center; justify-content: flex-end; }
+
+</style>
+</head><body>
+
+    <button-strip side="left">
+        <header>
+            <a href="javascript:void(0)" class="sel"><i class="fas fa-project-diagram"></i></a>
+            <a href="javascript:void(0)"><i class="fas fa-vector-square"></i></a>
+            <a href="javascript:void(0)"><i class="fas fa-images"></i></a>
+            <a href="javascript:void(0)"><i class="fas fa-draw-polygon"></i></a>
+            <a href="javascript:void(0)"><i class="fas fa-cube"></i></a>
+        </header>
+        <footer>
+            <a href="javascript:void(0)"><i class="fas fa-skull"></i></a>
+            <a href="javascript:void(0)"><i class="fas fa-cloud-upload-alt"></i></a>
+        </footer>
+    </button-strip>
+
+    <div class="opt-panel">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div class="footer-panel">
+        <header>
+            <span>Text</span>
+        </header>
+        <footer>
+            <span>Text2</span>
+        </footer>
+    </div>
+
+</body></html>
