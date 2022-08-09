@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<script type="module">
+import { 
+    PropPanel, PropButtonPop, PropGroup, 
+    PropInput, PropSelect, PropInputRange,
+    PropColorPicker,
+} from './lib/index.js';
+
+import { PropTree, PropTreeNode } from './lib/PropTree.js';
+
+window.addEventListener( 'load', ()=>{
+    const btn = document.getElementById( 'btnTest' );
+    btn.addEventListener( 'click', e=>{
+        const panel = document.querySelector( 'prop-panel' );
+        panel.toggle();
+    });
+
+    const panel = document.querySelector( 'prop-panel' );
+    const inprop = new PropInput();
+    inprop.label = 'Y';
+    panel.appendChild( inprop );
+
+
+    const sel = document.querySelector( 'prop-select' );
+    sel.isInt = true;
+    sel
+        .addOption( 'x', 5 )
+        .fromFlatArray( ['a',1,'b',2,'c',3] )
+        .onChange( (e)=>{
+            console.log( 'change', e.detail );
+        });
+    
+
+    const eGrp = document.createElement( 'prop-group' );
+    eGrp.setHeading( 'Animation' ).fixedTopRight().setWidth( 300 );
+    document.body.appendChild( eGrp );
+
+    const eSel = new PropSelect();
+    eGrp.appendChild( eSel );
+
+
+    document.getElementById( 'iBrushColor' ).addEventListener( 'input', e=>console.log( 'color', e.detail ) );
+    document.getElementById( 'iBrushSize' ).addEventListener( 'input', e=>console.log( 'size', e.detail ) );
+
+
+    const eTree = new PropTree();
+    document.querySelector( '#testDiv' ).appendChild( eTree );
+
+    let n = new PropTreeNode()
+        .setLabel( 'Test' )
+        .setOpen( true )
+        .append(
+            new PropTreeNode().setLabel( 'Sub 0' ),
+            new PropTreeNode().setLabel( 'Sub 1' ).setOpen(true).append( new PropTreeNode().setLabel( 'Woot' ).setClick( ()=>console.log( 'woot') ) ),
+            new PropTreeNode().setLabel( 'Sub 2' ),
+        )
+    ;
+    // n.appendChild(  new PropTreeNode().setLabel( 'Sub 0' ) );
+    // n.appendChild(  new PropTreeNode().setLabel( 'Sub 1' ) );
+    // n.appendChild(  new PropTreeNode().setLabel( 'Sub 2' ) );
+    eTree.appendChild( n );
+});
+
+</script>
+</head><body style="background-color:#606060;">
+
+<div style="width:300px;" id="testDiv">
+<prop-tree>
+    <prop-tree-node label="Node00" open="true">
+        <prop-tree-node label="Node00_00"></prop-tree-node>
+        <prop-tree-node label="Node00_01">
+            <prop-tree-node label="Node00_01_00"></prop-tree-node>
+            <prop-tree-node label="Node00_01_01"></prop-tree-node>
+        </prop-tree-node>
+        <prop-tree-node label="Node00_02"></prop-tree-node>
+    </prop-tree-node>
+    
+    <prop-tree-node label="Node01"></prop-tree-node>
+    <prop-tree-node label="Node02"></prop-tree-node>
+</prop-tree>
+<br>
+</div>
+
+<button id="btnTest">Test</button><br><br>
+
+<prop-panel>
+    <span>One</span>
+    <span>Two</span>
+    <span>Three</span>
+</prop-panel>
+
+<br><br>
+<prop-input value="" label="X" placeholder="Enter Value" step="0.5"></prop-input>
+
+<br><br>
+<prop-input-range></prop-input-range>
+
+<br><br>
+<prop-select>
+    <option value="1">Test1</option>
+    <option value="2">Test2</option>
+</prop-select>
+
+<br><br>
+<prop-button-pop style="position:fixed; right:20px; bottom:20px;" open="false">
+    <prop-select>
+        <option value="1">Test1</option>
+        <option value="2">Test2</option>
+    </prop-select>
+</prop-button-pop>
+
+<br><br>
+<prop-group heading="TESTER" style="width:300px;" open="false">
+    <span>Animation</span>
+    <prop-select>
+        <option value="1">Test1</option>
+        <option value="2">Test2</option>
+    </prop-select>
+    <br>
+    <span>Color</span>
+    <prop-color-picker></prop-color-picker>
+
+    <br>
+    <span>Color</span>
+    <prop-input-range></prop-input-range>
+    
+    <br>
+    <span>Number</span>
+    <prop-input label="X"></prop-input>
+</prop-group>
+
+<br><br>
+<prop-color-picker></prop-color-picker>
+
+<br><br>
+<prop-stack-panel>
+    <span>Brush Color</span>
+    <prop-color-picker id="iBrushColor"></prop-color-picker>
+
+    <span>Brush Size</span>
+    <prop-input-range id="iBrushSize" min="5" max="10" value="5"></prop-input-range>
+
+    <span>Button</span>
+    <prop-button></prop-button>
+    <prop-button></prop-button>
+</prop-stack-panel>
+
+
+</body></html> 
