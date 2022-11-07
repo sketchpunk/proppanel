@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="module">
+import { 
+    PropPanel, PropButtonPop, PropGroup, 
+    PropInput, PropSelect, PropInputRange,
+    PropColorPicker,
+} from './lib/index.js';
+
+window.addEventListener( 'load', ()=>{
+});
+
+</script>
+</head><body>
+<style>
+/* #region GLOBAL */
+html, body{ width:100%; height:100%; padding:0px; margin:0px; }
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1ft;
+
+    background-color: var(--ui-bg-0);
+}
+
+:root{
+    
+    --ui-bg-0     : #141414;
+    --ui-bg-1     : #2B2B2B;
+    --ui-bg-2     : #404040;
+    --ui-bg-3     : #4D4D4D;
+    --ui-bg-4     : #5E5E5E;
+
+    --ui-txt-0    : #d0d0d0;
+
+    --edge        : #454545;
+    --prop-font   : monospace;
+}
+/* #endregion */
+
+/* #region LAYOUT */
+.layout{
+    display                 : grid;
+    grid-template-columns   : 40px 1fr 200px;
+    grid-template-rows      : 1fr;
+    grid-template-areas     : "layout_l layout_m layout_r";
+    font-family             : monospace;
+    font-size               : 14px;
+}
+
+.layout_left_panel{
+    grid-area               : layout_l;
+    display                 : grid;
+    grid-template-columns   : 1fr;
+    grid-template-rows      : 1fr;
+    padding                 : 2px 0px 0px 0px;
+}
+
+.layout_mid_panel{
+    grid-area: layout_m;
+    display                 : grid;
+    grid-template-columns   : 200px 1fr;
+    grid-template-rows      : 40px 1fr;
+    grid-template-areas     : 
+        "layout_top layout_top"
+        "layout_sub layout_main";
+    margin                 :2px 2px 0px 2px;
+}
+
+.layout_right_panel{
+    grid-area: layout_r;
+    display                 : grid;
+    grid-template-columns   : 1fr;
+    grid-template-rows      : 1fr;
+    margin                  : 2px 0px 0px 0px;
+}
+
+.layout_top_panel{
+    grid-area               : layout_top;
+    display                 : grid;
+    grid-template-columns   : 1fr;
+    grid-template-rows      : 1fr;
+    margin-bottom           : 2px;
+}
+
+.layout_sub_panel{
+    grid-area               : layout_sub;
+    display                 : grid;
+    grid-template-columns   : 1fr;
+    grid-template-rows      : 1fr;
+    margin                  : 0px 0px 0px 0px;
+}
+
+.layout_viewport{
+    grid-area               : layout_main;
+    background-color        : gray;
+    position                : relative;
+}
+/* #endregion */
+
+    .panel{
+        background-color:var(--ui-bg-2);
+        display:flex;
+        flex-direction: column;
+    }
+
+    .panel > header{
+        background-color: var(--ui-bg-1);
+        color: var(--ui-txt-0);
+        padding: 4px 6px;
+        font-size: 0.9em;
+        flex:0 0 auto;
+        border-bottom: 2px solid var(--ui-bg-0);
+    }
+
+    .panel > main{
+        flex:1 1 auto;
+        border-right: 1px solid var(--edge);
+        border-left: 1px solid var(--edge);
+    }
+
+.IconPanel{
+    background-color    : var(--ui-bg-2);
+    display             : flex;
+    justify-content     : space-between;
+    border-right        : 1px solid var(--edge);
+    border-left         : 1px solid var(--edge);
+}
+
+.IconPanel.vert{ flex-direction : column; }
+.IconPanel.vert section{ flex-direction : column; }
+.IconPanel.vert button{ height:40px; }
+
+.IconPanel.hori{ flex-direction : row; }
+.IconPanel.hori section{ flex-direction : row; }
+.IconPanel.hori button{ width:40px; }
+
+
+.IconPanel > section{ display:flex }
+
+.IconPanel button{
+    background-color    : transparent;
+    border-width        : 0px;
+    color               : var(--ui-txt-0);
+    font-size           : 25px;
+    cursor              : pointer;
+}
+
+.IconPanel button:hover{ background-color: var(--ui-bg-4); }
+
+
+</style>
+
+<div class="layout">
+    <div class="layout_left_panel">
+        <div class="IconPanel vert">
+            <section>
+                <button><i class="fa-solid fa-chess-rook"></i></button>
+            </section>
+            
+            <section>
+                <button><i class="fa-solid fa-chess-rook"></i></button>
+            </section>
+
+            <section>
+                <button><i class="fa-solid fa-chess-rook"></i></button>
+            </section>
+        </div>
+    </div>
+    <div class="layout_mid_panel">
+        <div class="layout_top_panel">
+            <div class="IconPanel hori">
+                <section>
+                    <button><i class="fa-solid fa-chess-rook"></i></button>
+                </section>
+                
+                <section>
+                    <button><i class="fa-solid fa-chess-rook"></i></button>
+                </section>
+    
+                <section>
+                    <button><i class="fa-solid fa-chess-rook"></i></button>
+                </section>
+            </div>
+        </div>
+        <div class="layout_sub_panel">
+            <div class="panel">
+                <header>Sub Panel</header>
+                <main>xx</main>
+            </div>
+        </div>
+        <div class="layout_viewport">
+            viewPort
+        </div>
+    </div>
+    <div class="layout_right_panel">
+        <div class="panel"><main>xx</main></div>
+    </div>
+</div>
+
+</body></html> 

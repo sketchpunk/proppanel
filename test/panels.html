@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script type="module">
+
+class PropModel extends HTMLElement{
+    constructor(){
+        super();
+
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		let elm, elm_ary = new Array();
+		for( let i = this.children.length-1; i >= 0; i-- ){
+			elm = this.children[ i ];
+			if( elm.parentNode ) elm.parentNode.removeChild( elm );
+			elm_ary.push( elm );
+		}
+
+		this.appendChild( document.importNode( PropPanel.Template.content, true ) );
+
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		for( let i=elm_ary.length-1; i >= 0; i-- ) this.append_node( elm_ary[ i ] );
+    }
+
+    connectedCallback(){
+    }
+}
+
+PropModel.Template = document.createElement( "template" );
+PropModel.Template.innerHTML = `<div>Prop</div><header>Property Panel</header><main></main><footer></footer>`;
+
+window.customElements.define( "prop-model", PropModel );
+
+
+</script>
+</head><body>
+    <style>
+        
+    </style>
+</body></html>
