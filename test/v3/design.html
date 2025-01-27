@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap">
+<style>
+    /* #region GLOBAL */
+    html, body{ padding:0px; margin:0px; height:100%; font-family: "Roboto Mono", serif; }
+    
+    /* :root {
+        --panel-color   : #2B2D39;
+        --bg-color      : #21242B;
+    } */
+
+    :root {
+        --bg-00 : #1C1D21;
+        --bg-01 : #212327;
+        --bg-02 : #292B2F;
+        --bg-03 : #131316;
+
+        /* --panel-color   : #181818;
+        --bg-color      : #1F1F1F;
+        --bar-color     : #1F272C;*/
+        --panel-div-color: #2B2B2B; 
+
+        --icobtn-hover : #303032;
+        --icobtn-radius: 6px;
+        --icobtn-color : #646464;
+        --icobtn-hcolor : #CBCBCB;
+
+        --colorA : #2DD9CD;
+        --colorB : #842FC3;
+        --colorC : #FEC200;
+        --colorD : #F24C0E;
+        --colorE : #DD8308;
+        --colorF : #77EB6B;
+    }
+    /* #endregion */
+    
+    /* #region PAGE CONTAINER */
+    .pgContainer{ box-sizing: border-box; 
+        display: flex; flex-direction: column; height: 100%;
+        /* styling */
+    }
+
+    .pgContainer > header{ height:24px;
+        /* styling */
+        background-color: var(--bg-03);
+        color: silver;
+    }
+
+    .pgContainer > footer{ height:24px; 
+        /* styling */
+        background-color: var(--bg-03);
+        color: silver;
+    }
+    /* #endregion */
+    
+    /* #region PAGE CONTENT AREA */
+    .pgContainer > div{
+        display: flex; flex: 1;
+    }
+
+    .pgContainer > div > main{
+        flex: 1;
+        /* styling */
+        background-color: var(--bg-02);
+    }
+    /* #endregion */
+
+    /* #region PAGE BUTTON PANEL */
+    .pgBtnBar{
+        width: 55px; display:flex; flex-direction:column;
+        /* styling */
+        background-color: var(--bg-00);
+    }
+    .pgBtnBar > header {}
+    .pgBtnBar > footer {}
+    .pgBtnBar > main { flex:1; display:flex; flex-direction:column; }
+
+    .pgBtnBar button{
+        aspect-ratio: 1; margin:0px; border:none; background:none; cursor:pointer;
+        display:flex; justify-content: center; align-items: center;
+        /* styling */
+        transition: background 0.3s ease-in-out, color 0.2s ease;
+        border-left: 3px solid transparent;
+        border-radius: var(--icobtn-radius);
+        color: var(--icobtn-color);
+    }
+
+    .pgBtnBar button:hover{ color:var(--icobtn-hcolor); }
+    .pgBtnBar button:active{ color: var(--icobtn-color); }
+
+    .pgBtnBar button.on{
+        margin: 0px;
+        /* styling */
+        border-radius:0px;
+        border-left: 3px solid #0091ff;
+        box-sizing: border-box; 
+        color:var(--icobtn-hcolor);
+        background-color: var(--bg-01);
+    }
+
+    .pgBtnBar button > i { font-size: 1.5em; }
+
+    .pgBtnBar span{
+        display:block; text-align:center;
+        /* styling */
+        color: #EAEBEB; font-size:12px; font-weight:700; margin: 15px 0px 0px 0px;
+    }
+
+    .pgBtnBar span:first-of-type{ margin: 10px 0px 0px 0px; }    
+    /* #endregion */
+    
+    /* #region PAGE SIDE PANELS */
+    .pgContainer > div > aside{
+        width: 200px;
+        /* styling */
+        background-color: var(--bg-01);
+    }
+    /* #endregion */
+
+    /* #region ACCORDION   */
+    
+    .accordion{ list-style: none; margin:0px; padding:0px; 
+        /* styling */
+        background-color: #292A2F;
+        color: #8B8C9A;
+        font-size:12px;
+    }
+
+    .accordion ol { list-style: none; margin:0px; padding:0px; 
+        /* Animated Hidding */
+        height           : auto; /* min-content is a cool option */
+        visibility       : visible;
+        overflow         : clip;
+        interpolate-size : allow-keywords; /* Makes height:auto animatable, Can add this to :root to make it global */
+        transition       : height 0.3s ease-in-out, visibility 0.3s;
+        /* styling */
+        background-color:#202125;
+    }
+
+    .accordion li > header {
+        display:flex; flex-direction:row; justify-content: space-between; align-items: center;
+        /* styling */
+        padding: 6px 6px 6px 8px;
+        border-left: #DD8308 3px solid;
+        border-bottom: #111216 1px solid;
+        border-top: #34353B 1px solid;
+    }
+
+    .accordion li > header > span { flex:1; user-select: none; cursor:pointer; }
+    .accordion li > header > span:hover { color: #f0f0f0; }
+    .accordion li > header > aside { width: fit-content;}
+
+    .accordion li.close > ol{
+        /* display:none; */
+        height:0;
+        visibility:hidden;
+    }
+
+    .accordion ol > li {
+        display:flex; flex-direction:row; justify-content: space-between; align-items: center; user-select: none;
+        
+        /* styling */
+        padding: 6px 6px 6px 6px;
+        border-bottom: #26282B 1px solid;
+    }
+
+
+    /* #endregion */
+
+    /* 
+    https://www.w3schools.com/css/css_rwd_grid.asp
+    .row::after { content: ""; clear: both; display: table; } 
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+    */
+</style>
+<script type="module">
+window.addEventListener( 'load', ()=>{});
+</script>
+</head><body>
+<!--
+    https://dribbble.com/shots/18356550-Task-management-to-do-list-dashboard-Dark-mode
+    https://www.pinterest.com/pin/24629129207212964/
+-->
+<script>
+    function toggle_accordion( e ){
+        const o = e.target.closest( 'li' );
+        o.classList.toggle( 'close' );
+
+        // (o.classList.contains( 'close' ))
+        //     ? o.classList.remove( 'close' )
+        //     : o.classList.add( 'close' );
+    }
+</script>
+
+<div class="pgContainer">
+    <header>Header</header>
+    <div>
+        <nav class="pgBtnBar">
+            <header></header>
+            <main>
+                <span>Lorem</span>
+                <button><i class="fa-solid fa-folder"></i></button>
+                <button class="on"><i class="fa-solid fa-folder"></i></button>
+                <button><i class="fa-solid fa-folder"></i></button>
+
+                <span>Ipsum</span>
+                <button><i class="fa-solid fa-folder"></i></button>
+            </main>
+            <footer></footer>
+        </nav>
+
+        <aside>
+            <ul class="accordion">
+                <li>
+                    <header><span onClick="toggle_accordion(event)">Main</span><aside>X Y Z W</aside></header>
+                    <ol>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                    </ol>
+                </li>
+                <li>
+                    <header><span onClick="toggle_accordion(event)">Main</span><aside>X Y Z W</aside></header>
+                    <ol>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                        <li><span>Text</span><aside>X Y Z W</aside></li>
+                    </ol>
+                </li>
+            </ul>
+        </aside>
+        
+        <main>Main</main>
+        <aside>right</aside>
+        <nav class="pgBtnBar">
+            <header>h</header>
+            <main>m</main>
+            <footer>f</footer>
+        </nav>
+    </div>
+    <footer>footer</footer>
+</div>
+
+</body></html> 

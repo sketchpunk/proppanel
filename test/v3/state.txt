@@ -1,0 +1,87 @@
+Signals
+https://frontendmasters.com/blog/vanilla-javascript-reactivity/
+https://gist.github.com/1Marc/09e739caa6a82cc176ab4c2abd691814
+
+
+###############################################################
+
+class State {
+  constructor(initialState = {}) {
+    this.state = initialState;
+    this.listeners = [];
+  }
+
+  // Add listener to be notified when state changes
+  subscribe(listener) {
+    this.listeners.push(listener);
+  }
+
+  // Notify all listeners (re-render UI)
+  notify() {
+    this.listeners.forEach(listener => listener(this.state));
+  }
+
+  // Set state and notify listeners
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.notify();
+  }
+
+  // Get current state
+  getState() {
+    return this.state;
+  }
+}
+
+const appState = new State({ count: 0 });
+
+const render = (state) => {
+  console.log(`Current Count: ${state.count}`);
+  document.querySelector("#app").innerHTML = `Count: ${state.count}`;
+};
+
+// Subscribe to state changes (re-render whenever state changes)
+appState.subscribe(render)
+document.querySelector("#increment").addEventListener("click", () => {
+  appState.setState({ count: appState.getState().count + 1 });
+});
+
+
+####################################################################
+
+function createReactiveState(initialState) {
+  const listeners = [];
+  const handler = {
+    set(target, property, value) {
+      target[property] = value;
+      listeners.forEach(listener => listener(target)); // Notify listeners of changes
+      return true;
+    }
+  };
+  
+  const state = new Proxy(initialState, handler);
+  return {
+    state,
+    subscribe(listener) {
+      listeners.push(listener);
+    }
+  };
+}
+
+// Example usage
+const { state, subscribe } = createReactiveState({ count: 0 });
+
+const render = (state) => {
+  document.querySelector('#app').innerHTML = `Count: ${state.count}`;
+};
+
+// Subscribe to state changes
+subscribe(render);
+
+// Initial render
+render(state);
+
+// Update state
+document.querySelector('#increment').addEventListener('click', () => {
+  state.count += 1;  // Proxy automatically updates and triggers re-render
+});

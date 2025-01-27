@@ -1,0 +1,113 @@
+/* #region GLOBAL */
+:host {
+    --bg-00 : #1C1D21;
+    --bg-01 : #212327;
+    --bg-02 : #292B2F;
+    --bg-03 : #131316;
+
+    --icobtn-hover : #303032;
+    --icobtn-radius: 6px;
+    --icobtn-color : #646464;
+    --icobtn-hcolor : #CBCBCB;
+
+    --colorA : #2DD9CD;
+    --colorB : #842FC3;
+    --colorC : #FEC200;
+    --colorD : #F24C0E;
+    --colorE : #DD8308;
+    --colorF : #77EB6B;
+}
+/* #endregion */
+
+/* #region PAGE CONTAINER */
+:host { 
+    box-sizing: border-box; 
+    display: flex; flex-direction: column; height: 100%;
+    /* styling */
+}
+
+:host > header{ height:24px;
+    /* styling */
+    background-color: var(--bg-03);
+    color: silver;
+}
+
+:host > footer{ height:24px; 
+    /* styling */
+    background-color: var(--bg-03);
+    color: silver;
+}
+/* #endregion */
+
+/* #region PAGE CONTENT AREA */
+:host > div{
+    display: flex; flex: 1;
+}
+
+:host > div > slot[name="main"]{
+    flex: 1; display:block;
+    /* styling */
+    background-color: var(--bg-02);
+}
+/* #endregion */
+
+/* #region PAGE BUTTON PANEL */
+.pgBtnBar{
+    width: 55px; display:flex; flex-direction:column;
+    /* styling */
+    background-color: var(--bg-00);
+}
+
+.pgBtnBar > slot:nth-child(1){ display: block; }
+.pgBtnBar > slot:nth-child(3){ display: block; }
+.pgBtnBar > slot:nth-child(2){ flex:1; display:flex; flex-direction:column; }
+
+::slotted(button[slot="btn-lm"]),
+::slotted(button[slot="btn-rm"]){
+    aspect-ratio: 1; margin:0px; border:none; background:none; cursor:pointer;
+    display:flex; justify-content: center; align-items: center;
+    /* styling */
+    font-size: 1.5em;
+    transition: background 0.3s ease-in-out, color 0.2s ease;
+    border-left: 3px solid transparent;
+    border-radius: var(--icobtn-radius);
+    color: var(--icobtn-color);
+}
+
+::slotted(button[slot="btn-lm"]:hover),
+::slotted(button[slot="btn-rm"]:hover){ color:var(--icobtn-hcolor); }
+::slotted(button[slot="btn-lm"]:active),
+::slotted(button[slot="btn-rm"]:active){ color: var(--icobtn-color); }
+::slotted(button[slot="btn-lm"].on),
+::slotted(button[slot="btn-rm"].on){
+    margin: 0px;
+    /* styling */
+    border-radius:0px;
+    border-left: 3px solid #0091ff;
+    box-sizing: border-box; 
+    color:var(--icobtn-hcolor);
+    background-color: var(--bg-01);
+}
+
+::slotted(span[slot="btn-lm"]),
+::slotted(span[slot="btn-rm"]){
+    display:block; text-align:center;
+    /* styling */
+    color: #EAEBEB; font-size:12px; font-weight:700; margin: 15px 0px 0px 0px;
+}
+
+::slotted(span[slot="btn-lm"]:first-of-type),
+::slotted(span[slot="btn-rm"]:first-of-type){ margin: 10px 0px 0px 0px; }    
+/* #endregion */
+
+/* #region PAGE SIDE PANELS */
+:host > div > slot[name="panel-l"],
+:host > div > slot[name="panel-r"]{
+    width: 200px; flex-direction:column; display:flex;
+    /* styling */
+    background-color: var(--bg-01);
+}
+/* #endregion */
+
+
+.tester{ border:1px solid red; }

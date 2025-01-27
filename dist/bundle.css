@@ -225,6 +225,14 @@ flex-stack.row2 > * { flex:1 1 45%; }
 flex-stack.row1 > * { flex:1 1 51%; }
 /* #endregion */
 
+
+range-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
+range-input svg{ flex:1 1 auto; }
+range-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_track{ stroke:gray; stroke-width:6px; stroke-linecap:round; }
+range-input .rng_thumb { user-select: none; }
+range-input .rng_thumb rect{ fill:white; rx:3px; }
+range-input .rng_thumb text{ fill:black; font-size:13px; font-family: monospace; font-weight:bold; text-align:center; }
 /* #region DragNumberInput */
 drag-number-input{ display:flex; flex-direction:row; min-width:0px; }
 drag-number-input div{ flex:0 0; display: flex; align-items: center; cursor:pointer; user-select: none; }
@@ -260,14 +268,6 @@ drag-number-input.show input{ color:white; }
 drag-number-input.show svg circle{ fill:white; }
 
 /* #endregion */
-
-range-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
-range-input svg{ flex:1 1 auto; }
-range-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }
-range-input .rng_track{ stroke:gray; stroke-width:6px; stroke-linecap:round; }
-range-input .rng_thumb { user-select: none; }
-range-input .rng_thumb rect{ fill:white; rx:3px; }
-range-input .rng_thumb text{ fill:black; font-size:13px; font-family: monospace; font-weight:bold; text-align:center; }
 slide-input{ display:flex; flex-direction:row; user-select: none; min-width:0px; height:20px; }
 slide-input svg{ flex:1 1 auto; }
 slide-input .rng_connect{ stroke:white; stroke-width:6px; stroke-linecap:round; }

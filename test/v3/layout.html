@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap">
+<style>
+    html, body{ padding:0px; margin:0px; height:100%; font-family: "Roboto Mono", serif; }
+</style>
+<script type="module">
+// import { PanelLayout } from './PanelLayout.js';
+import { PanelLayout } from './PanelLayout_v2.js';
+window.addEventListener( 'load', ()=>{});
+</script>
+</head><body>
+<script></script>
+
+<!-- 
+<panel-layout panel-l="true" btn-l="true" btn-r="true">
+    <span slot="btn-lm">Lorem</span>
+    <button slot="btn-lm"><i class="fa-solid fa-folder"></i></button>
+    <button slot="btn-lm" class="on"><i class="fa-solid fa-folder"></i></button>
+    <button slot="btn-lm"><i class="fa-solid fa-folder"></i></button>
+
+    <span slot="btn-lm">Ipsum</span>
+    <button slot="btn-lm"><i class="fa-solid fa-folder"></i></button>
+
+    <span slot="btn-rm">Ipsum</span>
+    <button slot="btn-rm"><i class="fa-solid fa-folder"></i></button>
+
+    <span slot="panel-l">Panel Left</span>
+    <span slot="panel-r">Panel Right</span>
+</panel-layout> -->
+
+<!-- <panel-layout>
+    <div class="tester" slot="panel-l">
+        xxx
+    </div>
+</panel-layout> -->
+
+<style>
+    panel-layout-button-nav { flex-direction:row;}
+</style>
+
+<panel-layout-button-nav>
+    <button><i class="fa-solid fa-folder"></i></button>
+    <button><i class="fa-solid fa-folder"></i></button>
+    <button><i class="fa-solid fa-folder"></i></button>
+</panel-layout-button-nav>
+
+
+<!-- my-element.html
+<div>
+    <button part="my-button">Click me!</button>
+  </div>
+  JavaScript
+  // my-element.js
+  class MyElement extends HTMLElement {
+    constructor() {
+      super();
+      this.shadowRoot = this.attachShadow({ mode: 'open' });
+      const template = document.getElementById('my-element-template');
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+  }
+  customElements.define('my-element', MyElement); -->
+
+</body></html> 

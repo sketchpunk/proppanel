@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html><head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    /* test-panel { border: dashed red 1px; }
+    test-panel:state( hidden ) { border: none; } */
+</style>
+<script type="module">
+window.addEventListener( 'load', ()=>{});
+
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements
+// https://mdn.github.io/web-components-examples/
+class TestPanel extends HTMLElement{
+    // #region MAIN
+    static observedAttributes = [ 'test', 'collapsed' ];
+    #internals = null;
+
+    constructor(){
+        super();
+        this.#internals = this.attachInternals(); // Handle custom CSS States
+
+        // console.log( this.#internals );
+    }
+    // #endregion
+
+    // #region CUSTOM CSS STATES
+    // The :state() pseudo-class can also be used within the :host() pseudo-class function to match a custom 
+    // state within a custom element's shadow DOM. Additionally, the :state() pseudo-class can be used after 
+    // the ::part() pseudo-element to match the shadow parts of a custom element that is in a particular state.
+    // https://developer.mozilla.org/en-US/docs/Web/API/CustomStateSet
+
+    get collapsed(){ return this.#internals.states.has( 'hidden' ); }
+    set collapsed( v ){
+        (v) ? this.#internals.states.add( 'hidden' )
+            : this.#internals.states.delete( 'hidden' );
+
+        console.log( this.#internals.states.has( 'hidden' ) );
+    }
+    // #endregion
+
+    // #region LIFECYCLE
+    // Custom element added to page
+    connectedCallback(){
+        const shadow = this.attachShadow({ mode: 'open' });
+        console.log( 'Shadow', this.shadowRoot );
+
+        shadow.innerHTML = '<slot></slot>'; // instally allow all children to be added, but each item gets wrapped with a slot by the looks of it.
+        
+        // const wrapper = document.createElement('div');
+        // const slot = document.createElement('slot');
+        // wrapper.appendChild(slot);
+        // shadow.appendChild(wrapper);
+
+        // let slots = this.shadowRoot.querySelectorAll("slot");
+        // slots[1].addEventListener("slotchange", (e) => {
+        //   let nodes = slots[1].assignedNodes(); 
+        //   console.log( `Element in Slot "${slots[1].name}" changed to "${nodes[0].outerHTML}".`,
+        // );
+
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(':host { border: 5px solid #ccc; display:inline-block; } :host(:hover){border-color: #666;}' );
+        shadow.adoptedStyleSheets = [sheet];
+
+        
+        // const x = '00';
+        // const t = html`Testing One ${x} Two ${0} Three`;
+
+
+        /*
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync('span { color: red; border: 5px dotted black;}');
+        shadow.adoptedStyleSheets = [sheet];
+
+        const span = document.createElement("span");
+        span.textContent = "I'm in the shadow DOM";
+        shadow.appendChild(span);
+        */
+
+        // // Create some CSS to apply to the shadow dom
+        // const style = document.createElement("style");
+        // console.log(style.isConnected);
+
+        // style.textContent = ``;
+        // shadow.appendChild( style );
+
+        // Apply external styles to the shadow dom
+        // const linkElem = document.createElement("link");
+        // linkElem.setAttribute("rel", "stylesheet");
+        // linkElem.setAttribute("href", "style.css");
+        // shadow.appendChild(linkElem);
+    }
+
+    // Custom element removed from page
+    disconnectedCallback(){}
+
+    // called when attributes are changed
+    attributeChangedCallback( name, oldValue, newValue ){
+        console.log( `Attribute ${name} has changed.`, oldValue, newValue );
+        switch( name ){
+            case 'collapsed': this.collapsed = newValue; break;
+        }
+    }
+
+    // Custom element moved to new page
+    adoptedCallback(){}
+    // #endregion
+}
+
+customElements.define( 'test-panel', TestPanel );
+
+// tagged template literal
+function html(strings, ...values) {
+    const sCnt = strings.length;
+    const vCnt = values.length;
+    let rtn    = '';
+
+    for( let i=0; i < sCnt; i++ ){
+        rtn += strings[i] + (( i < vCnt )? values[i] : '');
+    }
+
+    return rtn;
+}
+
+function template(strings, ...values) {
+    const sCnt = strings.length;
+    const vCnt = values.length;
+    let rtn    = '';
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    for( let i=0; i < sCnt; i++ ){
+        rtn += strings[i] + (( i < vCnt )? values[i] : '');
+    }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const t     = document.createElement( 'template' );
+    t.innerHTML = rtn;
+    return t;
+}
+
+</script>
+</head><body>
+
+    <test-panel test="w00t" collapsed="">
+        Start<br>
+        xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>xxxx<br>
+        End
+    </test-panel>
+
+    <!--
+    https://eisenbergeffect.medium.com/web-components-2024-winter-update-445f27e7613a
+    - Declarative Shadow DOM
+    - ARIA Mixin string reflection via ElementInternals
+    
+    -->
+
+<!-- 
+import styles from "./ui-card.css" with { type: "css" };
+OR import { uiCard as styles } from "./components.css" with { type: "css" };
+
+
+const template = `
+  <slot></slot>
+`;
+
+export class UICard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" }).innerHTML = template;
+    this.shadowRoot.adoptedStyleSheets.push(styles);
+  }
+}
+
+customElements.define("ui-card", UICard); 
+
+/* components.css */
+
+@sheet uiCard {
+  :host {
+    box-shadow: 0 0 .5rem rgba(0,0,0,0.15);
+    border: .075rem solid #d8d8d8;
+    border-radius: .375rem;
+  }
+}
+
+@sheet uiButton {
+  :host {
+    ...
+  }
+}
+-->
+
+</body></html> 
